@@ -33,18 +33,32 @@ export class BannerComponent implements OnInit {
   public estado: string = "visivel";
 
   public imagens: Imagem[] = [
-    { estado: 'escondido', url: '/app/src/assets/banner-acesso/img_1.png'},
-    { estado: 'escondido', url: '/app/src/assets/banner-acesso/img_2.png'},
-    { estado: 'escondido', url: '/app/src/assets/banner-acesso/img_3.png'},
-    { estado: 'escondido', url: '/app/src/assets/banner-acesso/img_4.png'},
-    { estado: 'escondido', url: '/app/src/assets/banner-acesso/img_5.png'}
-  ]; 
+    { estado: "escondido", url: "/app/src/assets/banner-acesso/img_1.png" },
+    { estado: "escondido", url: "/app/src/assets/banner-acesso/img_2.png" },
+    { estado: "escondido", url: "/app/src/assets/banner-acesso/img_3.png" },
+    { estado: "escondido", url: "/app/src/assets/banner-acesso/img_4.png" },
+    { estado: "escondido", url: "/app/src/assets/banner-acesso/img_5.png" },
+  ];
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    setTimeout(() => this.logicaRotacao(), 2000);
+  }
 
-  public toogleEstadoAnimacao(): void {
-    this.estado = this.estado === "visivel" ? "escondido" : "visivel";
+  public logicaRotacao(): void {
+    let idx: number;
+
+    for (let i: number = 0; i <= 4; i++) {
+      if (this.imagens[i].estado === "visivel") {
+        this.imagens[i].estado = "escondido";
+        idx = i === 4 ? 0 : i + 1;
+        break;
+      }
+    }
+
+    this.imagens[idx].estado = "visivel";
+
+    setTimeout(() => this.logicaRotacao(), 2000);
   }
 }
