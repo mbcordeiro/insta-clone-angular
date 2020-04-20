@@ -16,7 +16,7 @@ import { trigger, state, style } from "@angular/animations";
         })
       ),
       transition("void => criado", [
-        style({ opacity: 0, trasform: 'translity(-50px, 0px)' }),
+        style({ opacity: 0, trasform: "translity(-50px, 0px)" }),
         animate("500ms 0s ease-in-out"),
       ]),
     ]),
@@ -28,17 +28,22 @@ import { trigger, state, style } from "@angular/animations";
         })
       ),
       transition("void => criado", [
-        style({ opacity: 0, trasform: 'translity(-50px, 0px)' }),
+        style({ opacity: 0, trasform: "translity(-50px, 0px)" }),
         animate("500ms 0s ease-in-out"),
       ]),
     ]),
   ],
 })
 export class AcessoComponent implements OnInit {
-  public estadoBanner: string = 'criado'
-  public estadoPainel: string = 'criado'
+  public estadoBanner: string = "criado";
+  public estadoPainel: string = "criado";
+  public cadastro: boolean = false;
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  public exibirPainel(event: string) {
+    this.cadastro = event === "cadastro" ? true : false;
+  }
 }
