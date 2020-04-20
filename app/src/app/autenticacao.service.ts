@@ -2,8 +2,8 @@ import { Usuario } from "./acesso/usuario.model";
 import * as firebase from "firebase";
 
 class Autenticacao {
-  public cadastroUsuario(usuario: Usuario): void {
-    firebase
+  public cadastroUsuario(usuario: Usuario): Promise<any> {
+    return firebase
       .auth()
       .createUserWithEmailAndPassword(usuario.email, usuario.senha)
       .then((respota: any) => {
