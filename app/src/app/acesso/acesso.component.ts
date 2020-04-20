@@ -20,10 +20,23 @@ import { trigger, state, style } from "@angular/animations";
         animate("500ms 0s ease-in-out"),
       ]),
     ]),
+    trigger("animacao-painel", [
+      state(
+        "criacao",
+        style({
+          opacity: 1,
+        })
+      ),
+      transition("void => criado", [
+        style({ opacity: 0, trasform: 'translity(-50px, 0px)' }),
+        animate("500ms 0s ease-in-out"),
+      ]),
+    ]),
   ],
 })
 export class AcessoComponent implements OnInit {
   public estadoBanner: string = 'criado'
+  public estadoPainel: string = 'criado'
 
   constructor() {}
 
