@@ -2,6 +2,8 @@ import { Usuario } from "./acesso/usuario.model";
 import * as firebase from "firebase";
 
 class Autenticacao {
+  public token_id: string;
+
   public cadastroUsuario(usuario: Usuario): Promise<any> {
     return firebase
       .auth()
@@ -22,7 +24,14 @@ class Autenticacao {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, senha)
-      .then((resposta: any) => {})
+      .then((resposta: any) => {
+        firebase
+          .auth()
+          .currentUser.getIdToken()
+          .then((idToken: string) => {
+            this.token_id = idToken;F
+          });
+      })
       .catch((error: Error) => console.log(error));
   }
 }
