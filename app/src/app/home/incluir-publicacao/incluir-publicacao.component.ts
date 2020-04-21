@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup } from '@angular/forms';
-
+import { FormGroup } from "@angular/forms";
+import { Bd } from "../../bd.service";
 @Component({
   selector: "app-incluir-publicacao",
   templateUrl: "./incluir-publicacao.component.html",
@@ -8,14 +8,14 @@ import { FormGroup } from '@angular/forms';
 })
 export class IncluirPublicacaoComponent implements OnInit {
   public formulario: FormGroup = new FormGroup({
-    'titulo': new FormGroup(null)
-  })
+    titulo: new FormGroup(null),
+  });
 
-  constructor() {}
+  constructor(private bd: Bd) {}
 
   ngOnInit(): void {}
 
   public publicar(): void {
-    
+    this.bd.publicar();
   }
 }
