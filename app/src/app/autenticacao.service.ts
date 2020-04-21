@@ -1,8 +1,13 @@
 import { Usuario } from "./acesso/usuario.model";
+import { Router } from "@angular/router";
 import * as firebase from "firebase";
+import { Injectable } from '@angular/core';
 
+@Injectable()
 class Autenticacao {
   public token_id: string;
+
+  constructor(private router: Router) {}
 
   public cadastroUsuario(usuario: Usuario): Promise<any> {
     return firebase
@@ -29,10 +34,15 @@ class Autenticacao {
           .auth()
           .currentUser.getIdToken()
           .then((idToken: string) => {
-            this.token_id = idToken;F
+            this.token_id = idToken;
+            this.router.navigate(['/home'])
           });
       })
       .catch((error: Error) => console.log(error));
+  }
+
+  public autenticado(): boolean {
+    return this.token_id !== undefined;
   }
 }
 
