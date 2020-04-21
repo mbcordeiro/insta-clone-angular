@@ -39,7 +39,7 @@ class Autenticacao {
             this.router.navigate(["/home"]);
           });
       })
-      .catch((error: Error) => console.log(error));
+      .catch((error: Error) => {});
   }
 
   public autenticado(): boolean {
