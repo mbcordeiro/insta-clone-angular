@@ -9,6 +9,7 @@ import * as firebase from "firebase";
 })
 export class IncluirPublicacaoComponent implements OnInit {
   public email: string;
+  public imagem: any;
 
   public formulario: FormGroup = new FormGroup({
     titulo: new FormGroup(null),
@@ -26,6 +27,11 @@ export class IncluirPublicacaoComponent implements OnInit {
     this.bd.publicar({
       email: this.email,
       titulo: this.formulario.value.titulo,
+      imagem: this.imagem[0]
     });
+  }
+
+  preparaImagemUpload(event: Event): void {
+    this.imagem = (<HTMLInputElement>event.target).files;
   }
 }
